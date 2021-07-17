@@ -1,0 +1,22 @@
+name: CI
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  docker:
+    continue-on-error: true
+    strategy:
+      matrix:
+        pkgs: ['', 'zlib-devel', 'zlib-devel,findutils']
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout out code
+        uses: actions/checkout@v2
+      - name: Build Docker image
+        uses: docker/build-push-action@v1
+        with:
+          dockerfile: Dockerfile
+          build_args: PKGS=${{ matrix.pkgs }}
+          push: false 
