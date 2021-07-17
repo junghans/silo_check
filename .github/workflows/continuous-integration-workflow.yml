@@ -9,7 +9,7 @@ jobs:
     continue-on-error: true
     strategy:
       matrix:
-        pkgs: ['', 'zlib-devel', 'zlib-devel,findutils']
+        pkgs: ['', 'zlib-devel', 'zlib-devel&findutils']
     runs-on: ubuntu-latest
     steps:
       - name: Checkout out code
